@@ -12,8 +12,10 @@ import java.util.TimerTask;
 public class MyBootReceiver extends BroadcastReceiver {
 
 
-    long          startTime             = 0 ;
-    long          endtime               = 0 ;
+    //    long          delayTime             = 5000 ;
+    long delayTime = 10000;    // 10 seconds
+    long startTime = 0;
+    long endtime = 0;
 
 
     @Override
@@ -21,46 +23,36 @@ public class MyBootReceiver extends BroadcastReceiver {
 
         A.a();
         A.a("1. Action: " + intent.getAction());
-	startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
 
-	// delay 5 seconds.
-	//
-	//
-	
-	final Handler handler = new Handler();
+        // delay 5 seconds.
+        final Handler handler = new Handler();
 
-	handler.postDelayed(new Runnable() {
-	    @Override
-	    public void run() {
-		    //Do something after 100ms
-		    A.a("333333333 " );
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+                A.a("3. ");
 
-			endtime = System.currentTimeMillis();
-			A.a(" starttime = " + startTime + "  endtime =" + endtime   );
-			A.a(" endtime - starttime = "   + (endtime - startTime)     );
+                endtime = System.currentTimeMillis();
+                A.a(" starttime = " + startTime + "  endtime =" + endtime + " endtime - starttime = " + (endtime - startTime) );
+//                A.a(" endtime - starttime = " + (endtime - startTime));
 
-			A.a("start second activty");
-			Intent intent = new Intent();
-			intent.setClassName("com.wistron.secondapplication","com.wistron.secondapplication.SecondActivity") ;
-			context.startActivity(intent);
-			A.a("start second activty done");
+                A.a("start second activty");
+                Intent intent = new Intent();
+                intent.setClassName("com.wistron.secondapplication", "com.wistron.secondapplication.SecondActivity");
+                context.startActivity(intent);
+                A.a("start second activty done");
 
 
-		}
-	}, 5000);
+            }
+        }, delayTime);
 
 
-	A.a("2. after delay 5 seconds ");
+        A.a("2. ");
 
-
-
-
-
-//        Intent it = new Intent(context, MyAudioService.class);
-//        context.startService(it);
 
     }
-
 
 
 }
