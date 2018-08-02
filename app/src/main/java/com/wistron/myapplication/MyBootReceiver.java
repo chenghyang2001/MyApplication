@@ -8,6 +8,7 @@ import android.os.Handler;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 public class MyBootReceiver extends BroadcastReceiver {
 
 
@@ -16,7 +17,7 @@ public class MyBootReceiver extends BroadcastReceiver {
 
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(final Context context, Intent intent) {
 
         A.a();
         A.a("1. Action: " + intent.getAction());
@@ -38,7 +39,14 @@ public class MyBootReceiver extends BroadcastReceiver {
 			A.a(" starttime = " + startTime + "  endtime =" + endtime   );
 			A.a(" endtime - starttime = "   + (endtime - startTime)     );
 
-	    }
+			A.a("start second activty");
+			Intent intent = new Intent();
+			intent.setClassName("com.wistron.secondapplication","com.wistron.secondapplication.SecondActivity") ;
+			context.startActivity(intent);
+			A.a("start second activty done");
+
+
+		}
 	}, 5000);
 
 
@@ -52,5 +60,7 @@ public class MyBootReceiver extends BroadcastReceiver {
 //        context.startService(it);
 
     }
+
+
 
 }
